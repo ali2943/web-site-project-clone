@@ -1,8 +1,542 @@
-@media (min-width:320px) and (max-width:425px) {    
-    .laptop-view-logo{
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE FIRST APPROACH
+   ======================================== */
+
+/* Global Responsive Fixes */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Hamburger Menu Button */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10001;
+}
+
+.hamburger-menu span {
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Mobile Drawer Styles */
+@media (max-width: 768px) {
+    .columns {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 85vw;
+        max-width: 300px;
+        height: 100vh;
+        background: #fff;
+        z-index: 9999;
+        overflow-y: auto;
+        transition: left 0.3s ease;
+        padding: 80px 0 20px 0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .columns.active {
+        left: 0;
+    }
+    
+    .column-options {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .explore-services {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+        height: auto;
+        padding: 15px;
+    }
+    
+    #ul-options-nav {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    #ul-options-nav li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+    
+    #ul-options-nav li a {
+        padding: 15px;
+    }
+    
+    .drop-down-menu {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+        background: #f8f9fa;
+        margin-left: 15px;
+    }
+}
+
+/* Body scroll lock when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* ========================================
+   MOBILE STYLES (≤480px)
+   ======================================== */
+@media (max-width: 480px) {
+    /* Show hamburger menu */
+    .hamburger-menu {
+        display: flex;
+        margin-right: 10px;
+    }
+    
+    /* Prevent horizontal overflow */
+    body {
+        overflow-x: hidden;
+    }
+    
+    /* Logo swap */
+    .laptop-view-logo {
         display: none;
     }
-    .mobile-view-logo{
+    
+    .mobile-view-logo {
         display: inline;
+        max-width: 80px;
+    }
+    
+    /* Issue bar - reduce font size */
+    .issue-bar {
+        height: auto;
+        padding: 8px 10px;
+    }
+    
+    .issue-bar p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+    
+    /* Navigation - stack layout */
+    .website-nav-bar {
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .nav-bar-logo-and-search {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .img-div {
+        width: auto;
+        justify-content: flex-start;
+    }
+    
+    .search-div {
+        padding: 0;
+        flex: 1;
+    }
+    
+    #input-bar {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .login-sign-up-div {
+        width: 100%;
+    }
+    
+    .parent-log-sign-up-div {
+        justify-content: space-between;
+        padding: 0 10px;
+        margin: 0;
+    }
+    
+    .sign-in-log-in {
+        font-size: 14px;
+    }
+    
+    /* Navigation columns - hidden, shown via drawer */
+    .columns {
+        display: block;
+    }
+    
+    /* Hero section - stack layout */
+    .first-line-pharm-consultation-div {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    #pharmacy-div {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 4px 8px;
+    }
+    
+    .slider {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 3/1;
+    }
+    
+    .slides {
+        width: calc(100vw * 6);
+    }
+    
+    .slides img {
+        width: 100vw;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    /* Service tiles - 1 column */
+    .lower-main-div {
+        grid-template-columns: 1fr;
+        padding: 0 8px;
+    }
+    
+    .grid-boxes {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .serv-contai {
+        flex-direction: row;
+        height: auto;
+        min-height: 150px;
+    }
+    
+    /* Product cards - 1 column */
+    .container {
+        flex-wrap: nowrap;
+        padding: 0 8px;
+    }
+    
+    .card {
+        width: 280px;
+        min-width: 280px;
+        flex-shrink: 0;
+    }
+    
+    /* Top brands - adjust grid */
+    .top-brand-div {
+        grid-template-columns: 1fr;
+    }
+    
+    .top-brand-title {
+        width: 100%;
+        margin: 0 8px 16px 8px;
+    }
+    
+    .grid-top-brand {
+        overflow-x: auto;
+    }
+    
+    .brand-card {
+        min-width: 200px;
+    }
+    
+    /* Bank offers - stack */
+    .bank-offers {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .slides-bank {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Footer - stack columns */
+    .main-div-ul-li {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 30px;
+    }
+    
+    .DAWAAI, .POPULAR-CATEOGORIES, .CONTACT-US, .CONNECT-WITH-US {
+        text-align: left;
+    }
+    
+    #google-appstore-logo {
+        flex-direction: column;
+        padding: 20px 0;
+        gap: 10px;
+    }
+    
+    .sectigo-iinner-divmg-main-div {
+        justify-content: center;
+        right: 0;
+        margin: 10px;
+    }
+    
+    #inner-div {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    /* About section */
+    .container-small {
+        padding: 0 20px;
+        margin: 0;
+    }
+    
+    /* Disease page */
+    .disease-div-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .disease-main-div {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* ========================================
+   TABLET STYLES (481px - 768px)
+   ======================================== */
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Show hamburger menu on tablets too */
+    .hamburger-menu {
+        display: flex;
+        margin-right: 10px;
+    }
+    
+    /* Logo */
+    .laptop-view-logo {
+        display: none;
+    }
+    
+    .mobile-view-logo {
+        display: inline;
+        max-width: 100px;
+    }
+    
+    /* Navigation - two row layout */
+    .website-nav-bar {
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .nav-bar-logo-and-search {
+        width: 100%;
+        flex-direction: row;
+    }
+    
+    .search-div {
+        padding: 0 10px;
+        flex: 1;
+    }
+    
+    #input-bar {
+        width: 100%;
+    }
+    
+    /* Navigation menu - drawer */
+    .columns {
+        display: block;
+    }
+    
+    /* Hero section - 2 column */
+    .first-line-pharm-consultation-div {
+        grid-template-columns: 1fr 2fr;
+    }
+    
+    #pharmacy-div {
+        width: 100%;
+    }
+    
+    .slider {
+        width: 100%;
+    }
+    
+    /* Service tiles - 2 columns */
+    .lower-main-div {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .grid-boxes {
+        width: 100%;
+    }
+    
+    /* Product cards - 2 visible */
+    .card {
+        width: 45%;
+        min-width: 250px;
+    }
+    
+    /* Top brands */
+    .top-brand-div {
+        grid-template-columns: 1fr 2fr;
+    }
+    
+    /* Bank offers - 2 columns */
+    .bank-offers {
+        flex-wrap: wrap;
+    }
+    
+    .slides-bank {
+        width: calc(50% - 10px);
+    }
+    
+    /* Footer - 2 columns */
+    .main-div-ul-li {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    /* Disease page - 2 columns */
+    .disease-div-columns {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .disease-main-div {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   LARGER TABLETS (769px - 1024px)
+   ======================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Hide hamburger on larger screens */
+    .hamburger-menu {
+        display: none;
+    }
+    
+    /* Show laptop logo */
+    .laptop-view-logo {
+        display: block;
+    }
+    
+    .mobile-view-logo {
+        display: none;
+    }
+    
+    /* Navigation adjustments */
+    .website-nav-bar {
+        padding: 12px 10px;
+    }
+    
+    #input-bar {
+        width: 400px;
+    }
+    
+    /* Navigation menu - normal flow */
+    .columns {
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        overflow-y: visible;
+        padding: 0;
+        box-shadow: none;
+    }
+    
+    .column-options {
+        flex-direction: row;
+    }
+    
+    /* Navigation menu */
+    #ul-options-nav {
+        font-size: 10px;
+        flex-direction: row;
+    }
+    
+    /* Service tiles - 3 columns */
+    .lower-main-div {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+    /* Product cards - 3 visible */
+    .card {
+        width: 280px;
+        min-width: 280px;
+    }
+    
+    /* Disease page - 3 columns */
+    .disease-div-columns {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+/* ========================================
+   PREVENT HORIZONTAL SCROLL
+   ======================================== */
+@media (max-width: 1024px) {
+    html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+    
+    * {
+        max-width: 100%;
+    }
+    
+    /* Fix slider overflow */
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        16% { transform: translateX(0); }
+        20% { transform: translateX(-100%); }
+        36% { transform: translateX(-100%); }
+        40% { transform: translateX(-200%); }
+        56% { transform: translateX(-200%); }
+        60% { transform: translateX(-300%); }
+        76% { transform: translateX(-300%); }
+        80% { transform: translateX(-400%); }
+        96% { transform: translateX(-400%); }
+        100% { transform: translateX(-500%); }
     }
 }
