@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Women's Health | Buy Online At Best Price In Pakistan</title>
+    <title>dShops - Fast Delivery | Dawaai.pk</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/styleMedia.css">
-    <link rel="stylesheet" href="../css/wellBeingProducts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -181,39 +180,29 @@
         </div>
     </nav>
 
-  
-     <main class="med3-page">
-    <aside class="med3-sidebar">
-      <div class="med3-search-wrap">
-        <input id="womensHealthGridSearch" type="search" placeholder="Search within category" />
-      </div>
-      <ul class="med3-filter-list">
-        <li>Brands &amp; Manufactures</li>
-        <li>Stock Availability</li>
-        <li>Price Range</li>
-        <li>Discount</li>
-      </ul>
-    </aside>
-
-    <section class="med3-content">
-      <div class="med3-header-row">
-        <h2 class="med3-title">Women's Health</h2>
-        <div class="med3-sort">
-          <label for="womensHealthGridSort">Sort by</label>
-          <select id="womensHealthGridSort">
-            <option value="default">Default Order</option>
-            <option value="priceAsc">Price: Low to High</option>
-            <option value="priceDesc">Price: High to Low</option>
-            <option value="nameAsc">Name: A to Z</option>
-          </select>
+    <section class="about-dawaai">
+        <div class="container-small">
+            <h1 id="about-dawaai-head">dShops - Fast Delivery Service</h1>
+            <p class="about-dawaai-para">
+                dShops is Dawaai's ultra-fast delivery service that brings your medicines and healthcare products to your doorstep within 60 minutes in Karachi. With our extensive network of local pharmacies and dedicated delivery partners, we ensure you get what you need, when you need it.
+            </p>
+            <p class="about-dawaai-para">
+                <strong>How dShops Works:</strong><br>
+                1. Browse our wide range of medicines and healthcare products<br>
+                2. Place your order online or through our mobile app<br>
+                3. Get your order delivered within 60 minutes in selected areas of Karachi<br>
+                4. Enjoy the convenience of fast, reliable delivery service
+            </p>
+            <p class="about-dawaai-para">
+                <strong>Why Choose dShops:</strong><br>
+                • Ultra-fast delivery in 60 minutes<br>
+                • Authentic medicines from verified pharmacies<br>
+                • Competitive pricing with special offers<br>
+                • Track your order in real-time<br>
+                • Safe and secure payment options
+            </p>
         </div>
-      </div>
-
-      <div class="med3-grid" id="womensHealthGrid">
-        <!-- Cards injected by JS -->
-      </div>
     </section>
-  </main>
 
     <footer id="footer-dawaai">
         <div class="main-div-ul-li">
@@ -286,70 +275,6 @@
 
     </footer>
     <script src="../java Script/script.js"></script>
-    <script>
-      const womensHealthGrid = document.getElementById('womensHealthGrid');
-      const womensHealthGridSearch = document.getElementById('womensHealthGridSearch');
-      const womensHealthGridSort = document.getElementById('womensHealthGridSort');
-
-      let products_womensHealthGrid = [];
-      let originalOrder_womensHealthGrid = [];
-
-      async function load_womensHealthGrid() {
-        try {
-          const res = await fetch('../data/womens-health.json');
-          products_womensHealthGrid = await res.json();
-          originalOrder_womensHealthGrid = [...products_womensHealthGrid];
-          render_womensHealthGrid(products_womensHealthGrid);
-        } catch (err) {
-          womensHealthGrid.innerHTML = '<div class="med3-empty">Could not load products.</div>';
-          console.error(err);
-        }
-      }
-
-      function render_womensHealthGrid(list) {
-        womensHealthGrid.innerHTML = '';
-        if (!list.length) {
-          womensHealthGrid.innerHTML = '<div class="med3-empty">No products found.</div>';
-          return;
-        }
-        list.forEach(p => {
-          const card = document.createElement('div');
-          card.className = 'med3-card';
-          const disabled = p.available === false;
-          card.innerHTML = `
-            <div class="med3-badge">${p.off || ''}</div>
-            <div class="med3-img-box"><img src="${p.img}" alt="${p.name}"></div>
-            <div class="med3-title-sm">${p.name}</div>
-            <div class="med3-sub">${p.brand || ''}</div>
-            <div class="med3-sub">${p.pack || ''}</div>
-            <div class="med3-price">Rs. ${p.price}<span class="med3-old">${p.oldPrice ? 'Rs. ' + p.oldPrice : ''}</span></div>
-            <button class="med3-btn ${disabled ? 'med3-disabled' : ''}" ${disabled ? 'disabled' : ''}>
-              ${disabled ? 'Sold Out' : 'Add to cart'}
-            </button>
-          `;
-          womensHealthGrid.appendChild(card);
-        });
-      }
-
-      function applyFilters_womensHealthGrid() {
-        const term = womensHealthGridSearch.value.trim().toLowerCase();
-        let list = originalOrder_womensHealthGrid.filter(p =>
-          [p.name, p.brand, p.pack].some(v => (v || '').toLowerCase().includes(term))
-        );
-
-        const sortVal = womensHealthGridSort.value;
-        if (sortVal === 'priceAsc') list = [...list].sort((a, b) => (a.price || 0) - (b.price || 0));
-        else if (sortVal === 'priceDesc') list = [...list].sort((a, b) => (b.price || 0) - (a.price || 0));
-        else if (sortVal === 'nameAsc') list = [...list].sort((a, b) => a.name.localeCompare(b.name));
-
-        render_womensHealthGrid(list);
-      }
-
-      womensHealthGridSearch.addEventListener('input', applyFilters_womensHealthGrid);
-      womensHealthGridSort.addEventListener('change', applyFilters_womensHealthGrid);
-
-      load_womensHealthGrid();
-    </script>
 </body>
 
 </html>

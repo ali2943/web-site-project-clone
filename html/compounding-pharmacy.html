@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Women's Health | Buy Online At Best Price In Pakistan</title>
+    <title>Compounding Pharmacy | Dawaai.pk</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/styleMedia.css">
-    <link rel="stylesheet" href="../css/wellBeingProducts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -181,39 +180,37 @@
         </div>
     </nav>
 
-  
-     <main class="med3-page">
-    <aside class="med3-sidebar">
-      <div class="med3-search-wrap">
-        <input id="womensHealthGridSearch" type="search" placeholder="Search within category" />
-      </div>
-      <ul class="med3-filter-list">
-        <li>Brands &amp; Manufactures</li>
-        <li>Stock Availability</li>
-        <li>Price Range</li>
-        <li>Discount</li>
-      </ul>
-    </aside>
-
-    <section class="med3-content">
-      <div class="med3-header-row">
-        <h2 class="med3-title">Women's Health</h2>
-        <div class="med3-sort">
-          <label for="womensHealthGridSort">Sort by</label>
-          <select id="womensHealthGridSort">
-            <option value="default">Default Order</option>
-            <option value="priceAsc">Price: Low to High</option>
-            <option value="priceDesc">Price: High to Low</option>
-            <option value="nameAsc">Name: A to Z</option>
-          </select>
+    <section class="about-dawaai">
+        <div class="container-small">
+            <h1 id="about-dawaai-head">Compounding Pharmacy</h1>
+            <p class="about-dawaai-para">
+                Our Compounding Pharmacy service provides customized medications tailored to your specific needs. We prepare personalized medicines that are not commercially available, ensuring you get the exact dosage and formulation prescribed by your doctor.
+            </p>
+            <p class="about-dawaai-para">
+                <strong>What is Compounding?</strong><br>
+                Compounding is the art and science of preparing personalized medications for patients. Our licensed pharmacists create custom formulations by combining, mixing, or altering ingredients to meet your unique medical requirements.
+            </p>
+            <p class="about-dawaai-para">
+                <strong>Our Compounding Services Include:</strong><br>
+                • Custom dosage forms (creams, ointments, solutions)<br>
+                • Pediatric formulations with pleasant flavors<br>
+                • Hormone replacement therapy preparations<br>
+                • Pain management medications<br>
+                • Veterinary medications<br>
+                • Dermatological preparations<br>
+                • Allergy-free formulations
+            </p>
+            <p class="about-dawaai-para">
+                <strong>Why Choose Our Compounding Service:</strong><br>
+                • Personalized medications for your specific needs<br>
+                • Alternative dosage forms (liquids, topicals, etc.)<br>
+                • Remove allergens or unwanted ingredients<br>
+                • Combine multiple medications into one<br>
+                • Create discontinued medications<br>
+                • Adjust strength or dosage as prescribed
+            </p>
         </div>
-      </div>
-
-      <div class="med3-grid" id="womensHealthGrid">
-        <!-- Cards injected by JS -->
-      </div>
     </section>
-  </main>
 
     <footer id="footer-dawaai">
         <div class="main-div-ul-li">
@@ -286,70 +283,6 @@
 
     </footer>
     <script src="../java Script/script.js"></script>
-    <script>
-      const womensHealthGrid = document.getElementById('womensHealthGrid');
-      const womensHealthGridSearch = document.getElementById('womensHealthGridSearch');
-      const womensHealthGridSort = document.getElementById('womensHealthGridSort');
-
-      let products_womensHealthGrid = [];
-      let originalOrder_womensHealthGrid = [];
-
-      async function load_womensHealthGrid() {
-        try {
-          const res = await fetch('../data/womens-health.json');
-          products_womensHealthGrid = await res.json();
-          originalOrder_womensHealthGrid = [...products_womensHealthGrid];
-          render_womensHealthGrid(products_womensHealthGrid);
-        } catch (err) {
-          womensHealthGrid.innerHTML = '<div class="med3-empty">Could not load products.</div>';
-          console.error(err);
-        }
-      }
-
-      function render_womensHealthGrid(list) {
-        womensHealthGrid.innerHTML = '';
-        if (!list.length) {
-          womensHealthGrid.innerHTML = '<div class="med3-empty">No products found.</div>';
-          return;
-        }
-        list.forEach(p => {
-          const card = document.createElement('div');
-          card.className = 'med3-card';
-          const disabled = p.available === false;
-          card.innerHTML = `
-            <div class="med3-badge">${p.off || ''}</div>
-            <div class="med3-img-box"><img src="${p.img}" alt="${p.name}"></div>
-            <div class="med3-title-sm">${p.name}</div>
-            <div class="med3-sub">${p.brand || ''}</div>
-            <div class="med3-sub">${p.pack || ''}</div>
-            <div class="med3-price">Rs. ${p.price}<span class="med3-old">${p.oldPrice ? 'Rs. ' + p.oldPrice : ''}</span></div>
-            <button class="med3-btn ${disabled ? 'med3-disabled' : ''}" ${disabled ? 'disabled' : ''}>
-              ${disabled ? 'Sold Out' : 'Add to cart'}
-            </button>
-          `;
-          womensHealthGrid.appendChild(card);
-        });
-      }
-
-      function applyFilters_womensHealthGrid() {
-        const term = womensHealthGridSearch.value.trim().toLowerCase();
-        let list = originalOrder_womensHealthGrid.filter(p =>
-          [p.name, p.brand, p.pack].some(v => (v || '').toLowerCase().includes(term))
-        );
-
-        const sortVal = womensHealthGridSort.value;
-        if (sortVal === 'priceAsc') list = [...list].sort((a, b) => (a.price || 0) - (b.price || 0));
-        else if (sortVal === 'priceDesc') list = [...list].sort((a, b) => (b.price || 0) - (a.price || 0));
-        else if (sortVal === 'nameAsc') list = [...list].sort((a, b) => a.name.localeCompare(b.name));
-
-        render_womensHealthGrid(list);
-      }
-
-      womensHealthGridSearch.addEventListener('input', applyFilters_womensHealthGrid);
-      womensHealthGridSort.addEventListener('change', applyFilters_womensHealthGrid);
-
-      load_womensHealthGrid();
-    </script>
 </body>
 
 </html>

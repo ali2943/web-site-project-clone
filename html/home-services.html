@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Women's Health | Buy Online At Best Price In Pakistan</title>
+    <title>Home Services | Dawaai.pk</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/styleMedia.css">
-    <link rel="stylesheet" href="../css/wellBeingProducts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -181,39 +180,42 @@
         </div>
     </nav>
 
-  
-     <main class="med3-page">
-    <aside class="med3-sidebar">
-      <div class="med3-search-wrap">
-        <input id="womensHealthGridSearch" type="search" placeholder="Search within category" />
-      </div>
-      <ul class="med3-filter-list">
-        <li>Brands &amp; Manufactures</li>
-        <li>Stock Availability</li>
-        <li>Price Range</li>
-        <li>Discount</li>
-      </ul>
-    </aside>
-
-    <section class="med3-content">
-      <div class="med3-header-row">
-        <h2 class="med3-title">Women's Health</h2>
-        <div class="med3-sort">
-          <label for="womensHealthGridSort">Sort by</label>
-          <select id="womensHealthGridSort">
-            <option value="default">Default Order</option>
-            <option value="priceAsc">Price: Low to High</option>
-            <option value="priceDesc">Price: High to Low</option>
-            <option value="nameAsc">Name: A to Z</option>
-          </select>
+    <section class="about-dawaai">
+        <div class="container-small">
+            <h1 id="about-dawaai-head">Home Services</h1>
+            <p class="about-dawaai-para">
+                Dawaai's Home Services bring professional healthcare right to your doorstep. We offer a wide range of at-home medical services including nursing care, physiotherapy, sample collection for lab tests, and more. Experience quality healthcare in the comfort and safety of your home.
+            </p>
+            <p class="about-dawaai-para">
+                <strong>Our Home Services Include:</strong><br>
+                • Home Nursing Care<br>
+                • Physiotherapy at Home<br>
+                • Lab Sample Collection<br>
+                • Vaccination Services<br>
+                • Post-operative Care<br>
+                • Elderly Care<br>
+                • Wound Care and Dressing<br>
+                • IV Therapy and Injections
+            </p>
+            <p class="about-dawaai-para">
+                <strong>Why Choose Our Home Services:</strong><br>
+                • Experienced and certified healthcare professionals<br>
+                • Convenient scheduling at your preferred time<br>
+                • Safe and hygienic procedures<br>
+                • Affordable pricing with transparent costs<br>
+                • Available across major cities in Pakistan<br>
+                • Emergency and regular care options
+            </p>
+            <p class="about-dawaai-para">
+                <strong>How to Book:</strong><br>
+                1. Select the service you need<br>
+                2. Choose your preferred date and time<br>
+                3. Our healthcare professional visits your home<br>
+                4. Receive quality care in a safe environment<br>
+                5. Pay conveniently after service completion
+            </p>
         </div>
-      </div>
-
-      <div class="med3-grid" id="womensHealthGrid">
-        <!-- Cards injected by JS -->
-      </div>
     </section>
-  </main>
 
     <footer id="footer-dawaai">
         <div class="main-div-ul-li">
@@ -286,70 +288,6 @@
 
     </footer>
     <script src="../java Script/script.js"></script>
-    <script>
-      const womensHealthGrid = document.getElementById('womensHealthGrid');
-      const womensHealthGridSearch = document.getElementById('womensHealthGridSearch');
-      const womensHealthGridSort = document.getElementById('womensHealthGridSort');
-
-      let products_womensHealthGrid = [];
-      let originalOrder_womensHealthGrid = [];
-
-      async function load_womensHealthGrid() {
-        try {
-          const res = await fetch('../data/womens-health.json');
-          products_womensHealthGrid = await res.json();
-          originalOrder_womensHealthGrid = [...products_womensHealthGrid];
-          render_womensHealthGrid(products_womensHealthGrid);
-        } catch (err) {
-          womensHealthGrid.innerHTML = '<div class="med3-empty">Could not load products.</div>';
-          console.error(err);
-        }
-      }
-
-      function render_womensHealthGrid(list) {
-        womensHealthGrid.innerHTML = '';
-        if (!list.length) {
-          womensHealthGrid.innerHTML = '<div class="med3-empty">No products found.</div>';
-          return;
-        }
-        list.forEach(p => {
-          const card = document.createElement('div');
-          card.className = 'med3-card';
-          const disabled = p.available === false;
-          card.innerHTML = `
-            <div class="med3-badge">${p.off || ''}</div>
-            <div class="med3-img-box"><img src="${p.img}" alt="${p.name}"></div>
-            <div class="med3-title-sm">${p.name}</div>
-            <div class="med3-sub">${p.brand || ''}</div>
-            <div class="med3-sub">${p.pack || ''}</div>
-            <div class="med3-price">Rs. ${p.price}<span class="med3-old">${p.oldPrice ? 'Rs. ' + p.oldPrice : ''}</span></div>
-            <button class="med3-btn ${disabled ? 'med3-disabled' : ''}" ${disabled ? 'disabled' : ''}>
-              ${disabled ? 'Sold Out' : 'Add to cart'}
-            </button>
-          `;
-          womensHealthGrid.appendChild(card);
-        });
-      }
-
-      function applyFilters_womensHealthGrid() {
-        const term = womensHealthGridSearch.value.trim().toLowerCase();
-        let list = originalOrder_womensHealthGrid.filter(p =>
-          [p.name, p.brand, p.pack].some(v => (v || '').toLowerCase().includes(term))
-        );
-
-        const sortVal = womensHealthGridSort.value;
-        if (sortVal === 'priceAsc') list = [...list].sort((a, b) => (a.price || 0) - (b.price || 0));
-        else if (sortVal === 'priceDesc') list = [...list].sort((a, b) => (b.price || 0) - (a.price || 0));
-        else if (sortVal === 'nameAsc') list = [...list].sort((a, b) => a.name.localeCompare(b.name));
-
-        render_womensHealthGrid(list);
-      }
-
-      womensHealthGridSearch.addEventListener('input', applyFilters_womensHealthGrid);
-      womensHealthGridSort.addEventListener('change', applyFilters_womensHealthGrid);
-
-      load_womensHealthGrid();
-    </script>
 </body>
 
 </html>
